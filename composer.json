@@ -18,6 +18,10 @@
         "classmap": [
             "database"
         ],
+        "files": [
+            "app/Helpers/CommonHelper.php",
+    		"app/Helpers/PageHelper.php"
+        ],
         "psr-4": {
             "App\\": "app/"
         }

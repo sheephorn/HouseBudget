@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Definitions\FunctionsDefinition;
+
+foreach (FunctionsDefinition::URL as $id=>$url) {
+    if (FunctionsDefinition::CONTROLLER[$id] !== "" && FunctionsDefinition::CONTROLLER[$id] !== "-") {
+        Route::match(['get', 'post'], $url, FunctionsDefinition::CONTROLLER[$id])->name($id);
+    }
+}
