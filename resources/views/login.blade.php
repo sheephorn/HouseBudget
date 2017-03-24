@@ -1,22 +1,14 @@
 @extends('commons.layout')
 @include('commons.header')
 @section('content')
-<div class="div-base">
-    <div class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12"><h1>@{{ title }}</h1></div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">@{{ next }}</div>
-                <div class="col-lg-6" v-on:click="inalert">@{{ prev }}</div>
-            </div>
-        </div>
-    </div>
-</div>
-<input type="text" name="email" value="">
-<input type="password" name="passward" value="">
-<button type="button" id="login-button">@{{ message }}</button>
+@inject('func', 'App\Definitions\FunctionsDefinition')
+<body>
+	<form method="post" action="{{{ route($func::LOGIN) }}}">
+		<input type="text" name="email" value="">
+		<input type="password" name="passward" value="">
+		<button type="button" id="login-button">@{{ message }}</button>
+	</form>
+</body>
 @stop
 @section('endJs')
 <script>
@@ -25,7 +17,7 @@
 var app = new Vue({
     el : '#login-button',
     data : {
-        message : 'HELLO',
+        message : 'Login',
     },
 });
 var header = new Vue({
@@ -36,7 +28,9 @@ var header = new Vue({
         prev : "prev!"
     },
     methods : {
-        inalert : getA()
+        inalert : function() {
+            showAlert(this.next)
+        }
     }
 });
 

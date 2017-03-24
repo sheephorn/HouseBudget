@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Definitions\FunctionsDefinition;
 
 class Handler extends ExceptionHandler
 {
@@ -42,9 +44,15 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+        if ($e instanceof NotFoundHttpException) {
+            $ret = redirect()->route(FunctionsDefinition::LOGIN_VIEW)->with('message', 'NotFoundURL');
+        }
+        if (!isset($ret)) {
+          $ret =  parent::render($request, $e);
+        }
+        return $ret;
     }
 
     /**

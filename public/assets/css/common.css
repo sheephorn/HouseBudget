@@ -1,3 +1,24 @@
+article,aside,canvas,details,figcaption,figure,
+header,footer,main,menu,nav,section,summary {
+	display: block;
+}
+
+@media screen and (max-width: 480px) {
+
+}
+img {
+    max-width : 100% ;
+    height : auto ;
+}
+iflame {
+    width : 100% ;
+}
+body {
+	-webkit-text-size-adjust: 100%;
+}
+
+/*ローディング画面*/
+
 #loading-bg {
     /*display: none;*/
     position: fixed;
@@ -21,6 +42,5 @@
     color: #fff;
     z-index: 2;
 }
-div.div-base {
-    background: red;
-}
+
+/*基本ＣＳＳ*/
