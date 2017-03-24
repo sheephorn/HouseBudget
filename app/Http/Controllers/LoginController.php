@@ -10,13 +10,16 @@ use App\Definitions\FunctionsDefinition;
 class LoginController extends BaseController
 {
     private $loginService;
+    private $code;
 
-    public function __constract(
+    public function __construct(
         LoginService $loginService
         )
     {
         $this->loginService = $loginService;
+        $this->code = app('Code');
     }
+
     /**
      * ログイン画面の表示
      * @param  Object $request Request
@@ -31,11 +34,22 @@ class LoginController extends BaseController
      * ログイン
      * ログイン可能な場合、ログイン先urlを返す
      *
-     * @param  Request $request Rquest
+     * @param  Object $request Request
      * @return Array           結果コード、リダイレクト先のurlを含む配列
      */
     public function login(Request $request)
     {
-        return $this->loginService->login();
+        return $this->loginService->login($request);
+    }
+
+    /**
+     * 会員登録
+     *
+     * @param  Object $request Request
+     * @return Array           結果コード含む配列
+     */
+    public function regist(Request $request)
+    {
+        return $this->loginService->regist($request);
     }
 }

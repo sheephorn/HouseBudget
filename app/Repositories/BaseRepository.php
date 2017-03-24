@@ -60,10 +60,9 @@ class BaseRepository
 	public function find($attrs)
 	{
         $result = $this->model;
-        foreach($attrs as $attr) {
-            $result->where($attr);
+        foreach($attrs as $col => $attr) {
+            $result = $result->where($col, $attr);
         }
-		$result = $result->get();
 		return $result;
 	}
 
@@ -75,12 +74,11 @@ class BaseRepository
     public function findForUpdate($attrs)
     {
         $result = $this->model;
-        foreach($attrs as $attr) {
-            $result->where($attr);
+        foreach($attrs as $col => $attr) {
+            $result = $result->where($col, $attr);
         }
 		$result = $result
-                ->lockForUpdate()
-                ->get();
+                ->lockForUpdate();
 		return $result;
     }
 

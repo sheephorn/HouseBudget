@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquents;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class Member_auth extends Model
 {
-    protected $table = 'member';
+    protected $table = 'member_auth';
     protected $primaryKey = 'member_id';
-    protected $guarded = array('member_id');
+    protected $guarded = array();
     public $timestamps = true;
 }

@@ -16,7 +16,7 @@ class MemberAuth extends Migration
         Schema::create('member_auth', function (Blueprint $table) {
             $table->unsignedInteger('member_id')->primary();
             $table->string('email')->unique();
-            $table->string('passward', 100);
+            $table->string('password', 100);
             $table->softDeletes();
             $table->timestamps();
         });
