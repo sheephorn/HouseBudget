@@ -27,6 +27,7 @@ class LoginController extends BaseController
      */
     public function getView(Request $request)
     {
+        var_dump(\Session::all());
         return view(FunctionsDefinition::VIEW[array_search($request->path(), FunctionsDefinition::URL)]);
     }
 

@@ -1,7 +1,6 @@
 <script>
 var getLoginCallback = function(ele) {
     var callback = function(data) {
-        console.log(data)
         if (data.code !== undefined) {
             if (data.code === '0') {
                 // 正常時
@@ -20,7 +19,6 @@ var getLoginCallback = function(ele) {
 
 var getRegistCallback = function(ele) {
     var callback = function(data) {
-        console.log(data)
         if (data.code !== undefined) {
             if (data.code === '0') {
                 // 正常時
@@ -46,7 +44,6 @@ var login = function(event, ele)
     }
     var callback = getLoginCallback();
     var failcallback = getFailCallback();
-    console.log(formObj);
     execAjax(ele.url.login, formObj, callback, failcallback);
 }
 
@@ -71,13 +68,14 @@ var app = new Vue({
         message : 'Login',
 		email : '',
 		password : '',
+        sessions : '{!! json_encode(session()->all()) !!}',
         url : {
-            login : '{{ route($func::LOGIN) }}',
-            regist : '{{ route($func::MEMBER_REGIST) }}'
+            login : '{{ route($func::GET_LOGIN) }}',
+            regist : '{{ route($func::REGIST_NEW_MEMBER) }}'
         }
     },
 	created : function() {
-        //
+         this.sessions = $.parseJSON(this.sessions);
 	},
 	computed : {
 		sha256 : function() {
@@ -93,5 +91,9 @@ var app = new Vue({
         }
 	}
 });
+
+Vue.component('session-all', {
+
+})
 
 </script>

@@ -13,8 +13,17 @@
 
 use App\Definitions\FunctionsDefinition;
 
-foreach (FunctionsDefinition::URL as $id=>$url) {
-    if (FunctionsDefinition::CONTROLLER[$id] !== "" && FunctionsDefinition::CONTROLLER[$id] !== "-") {
+
+foreach(FunctionsDefinition::URL as $id=>$url){
+    if(FunctionsDefinition::CONTROLLER[$id] !== "" && isset(FunctionsDefinition::IGNORE_LOGIN_MIDDLEWARE[$id])){
         Route::match(['get', 'post'], $url, FunctionsDefinition::CONTROLLER[$id])->name($id);
     }
 }
+
+Route::group(['middleware' => 'login'], function () {
+    foreach (FunctionsDefinition::URL as $id=>$url) {
+        if (FunctionsDefinition::CONTROLLER[$id] !== "" && !isset(FunctionsDefinition::IGNORE_LOGIN_MIDDLEWARE[$id])) {
+            Route::match(['get', 'post'], $url, FunctionsDefinition::CONTROLLER[$id])->name($id);
+        }
+    }
+});

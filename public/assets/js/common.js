@@ -24,6 +24,7 @@ var execAjax = function(url, formObj, funcCallack, funcFaiiCallack) {
 
     // 通信完了コールバック
     process.done(function(data) {
+        console.log(data)
       funcCallack(data);
     });
 

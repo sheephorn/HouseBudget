@@ -42,7 +42,10 @@ class LoginService
                     'code' => '0',
                     'url' => '',
                 ];
-                session(json_decode(json_encode($member), true));
+                // session(json_decode(json_encode($member), true));
+                // session(['auth' => true]);
+                \Session::put('b', 'c');
+                \Log::debug(\Session::all());
             } else {
                 $ret = [
                     'code' => '1',
@@ -91,7 +94,6 @@ class LoginService
                     'accessTime' => getAccessTime(),
                 ];
             });
-            session(['DEBUG-HEI' => 'OK']);
 
         } catch (\Exception $e) {
             createErrorLog($e, $condition);

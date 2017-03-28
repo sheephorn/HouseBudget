@@ -7,27 +7,36 @@ namespace App\Definitions;
  */
 class FunctionsDefinition
 {
-    const LOGIN_VIEW = "LOGIN_VIEW";
-    const LOGIN = "LOGIN";
-    const MEMBER_REGIST = "MEMBER_REGIST";
+    const VIEW_LOGIN = "VIEW_LOGIN";
+    const VIEW_INDEX = "VIEW_INDEX";
+    const GET_LOGIN = "GET_LOGIN";
+    const REGIST_NEW_MEMBER = "REGIST_NEW_MEMBER";
 
     const URL = [
-        self::LOGIN_VIEW => "login/index",
-        self::LOGIN => "login/login",
-        self::MEMBER_REGIST => "member/regist",
+        self::VIEW_LOGIN => "login/index",
+        self::VIEW_INDEX => "member/index",
+        self::GET_LOGIN => "login/login",
+        self::REGIST_NEW_MEMBER => "member/regist",
     ];
 
     const CONTROLLER = [
-        self::LOGIN_VIEW => "LoginController@getView",
-        self::LOGIN => "LoginController@login",
-        self::MEMBER_REGIST => "LoginController@regist",
+        self::VIEW_LOGIN => "LoginController@getView",
+        self::VIEW_INDEX => "LoginController@getView",
+        self::GET_LOGIN => "LoginController@login",
+        self::REGIST_NEW_MEMBER => "LoginController@regist",
     ];
 
     const VIEW = [
-        self::LOGIN_VIEW => "login",
+        self::VIEW_LOGIN => "login",
     ];
 
     const TITLE = [
-        self::LOGIN_VIEW => "LOGIN",
+        self::VIEW_LOGIN => "LOGIN",
+    ];
+
+    const IGNORE_LOGIN_MIDDLEWARE = [
+        self::VIEW_LOGIN => self::VIEW_LOGIN,
+        self::GET_LOGIN => self::GET_LOGIN,
+        self::REGIST_NEW_MEMBER => self::REGIST_NEW_MEMBER,
     ];
 }

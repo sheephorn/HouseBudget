@@ -27,8 +27,11 @@ class VerifyCsrfToken extends BaseVerifier
         if ($request->ajax() && $request->header('X-CSRF-TOKEN') !== "") {
             $ret = true;
             return $ret;
+        } elseif ( isset($request->_token) && $request->_token !== "" ) {
+            $ret = true;
+            return $ret;
         } else {
-            //
+            
         }
     }
 }
