@@ -16,13 +16,19 @@ class VerifyCsrfToken extends BaseVerifier
         //
     ];
 
+    /**
+     * トークン管理
+     * @param  Object  $request Request
+     * @todo 暫定的に、ajaxでtokenがあれば強制的に通過する処理にしている
+     *       いずれ修正予定
+     */
     protected function tokensMatch($request)
     {
         if ($request->ajax() && $request->header('X-CSRF-TOKEN') !== "") {
             $ret = true;
             return $ret;
         } else {
-            // 
+            //
         }
     }
 }
