@@ -6,6 +6,7 @@ var execAjax = function(url, formObj, funcCallack, funcFaiiCallack) {
 
     console.log(url);
     console.log(formObj);
+    formObj['_token'] = $('meta[name="csrf-token"]').attr('content');
 
     var process = $.ajax({
       url : url,
