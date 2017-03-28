@@ -15,7 +15,10 @@ class Prefecture extends Migration
     {
         Schema::create('prefecture', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('prefecture_name');
+            $table->string('city_name');
+            $table->string('prefecture_kana');
+            $table->string('city_kana');
             $table->softDeletes();
             $table->timestamps();
         });

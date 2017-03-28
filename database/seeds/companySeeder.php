@@ -18,6 +18,10 @@ class companySeeder extends Seeder
 
         \DB::table('company')->truncate();
         \DB::table('company')->insert($this->getInsertArray());
+        \DB::table('company')->update([
+            'created_at' => date_create()->format('Ymd'),
+            'updated_at' => date_create()->format('Ymd'),
+        ]);
     }
 
     private function getInsertArray()
